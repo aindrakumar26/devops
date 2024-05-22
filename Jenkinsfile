@@ -5,9 +5,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    def dockerfilePath = '/home/ubuntu/devops'
-
-                    docker.build('aindrakumar/static-website:latest', "-f ${dockerfilePath}/Dockerfile .")
+                    docker.build('aindrakumar/static-website:latest')
                 }
             }
         }
