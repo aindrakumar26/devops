@@ -5,15 +5,15 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build('static-website:latest')
+                    docker.build('aindrakumar/static-website:latest')
                 }
             }
         }
-        stage('Push Docker Image') {
+        stage('Push Docker Image to Docker Hub') {
             steps {
                 script {
-                    docker.withRegistry('https://992382644902.dkr.ecr.us-west-2.amazonaws.com', 'ecr:credentials') {
-                        docker.image('static-website:latest').push('latest')
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+                        docker.image('aindrakumar/static-website:latest').push('latest')
                     }
                 }
             }
